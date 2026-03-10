@@ -14,6 +14,8 @@ from google import genai
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from .models import Conversation, Message
+from .serializers import ConversationSerializer, MessageSerializer
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 
@@ -31,9 +33,9 @@ Teaching style:
 - Use short examples when helpful.
 """
 
-
+#create view
 @api_view(["POST"])
-def chat_view(request):
+def conversation(request):
 	"""
 	Handle chat request from frontend.
 
@@ -82,3 +84,19 @@ def chat_view(request):
 		)
 
 	return Response({"reply": ai_reply}, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def conversation_list_view(request):
+    conversations = Conversation.objects.all()
+    serializer = ConversationSerializer(conversations, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def conversation_detail_view(request, pk):
+    post = None
+    for i in conversation:
+        if i['_id'] == str(pk):
+            post = i
+            break
+    return Response(post)
