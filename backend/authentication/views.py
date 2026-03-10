@@ -3,13 +3,16 @@ from django.shortcuts import render
 # Create your views here.
 from django.shortcuts import render
 from django.http import JsonResponse
-from backend.conversation import serializers
+from conversation import serializers
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import *
 from .serializers import *
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 
 # Create your views here.
