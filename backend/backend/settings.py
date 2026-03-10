@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     "conversation",
+    "simplejwt",
 ]
 
 MIDDLEWARE = [
@@ -85,5 +86,13 @@ USE_TZ = True
 STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# "Allow all" for frontend requests during development.
 CORS_ALLOW_ALL_ORIGINS = True
+
+REST_FRAMEWORK = {
+    ...
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        ...
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+    ...
+}

@@ -1,11 +1,13 @@
 from django.db import models
 
+from backend.backend import settings
+
 # Create your models here.
 class Conversation(models.Model):
     """
     Model to store conversation history.
     """
-    user = models.CharField(max_length=255)
+    User = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     _id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
