@@ -1,19 +1,17 @@
 import React from 'react'
 import { Card } from 'react-bootstrap'
 
-function ConversationItem({ title, subtitle, time }) {
+function ConversationItem({ role = 'assistant', message }) {
+  const isUser = role === 'user'
+
   return (
-    <Card className="mb-2">
-      <Card.Body>
-        <div className="d-flex justify-content-between align-items-start">
-          <div>
-            <Card.Title className="mb-1">{title}</Card.Title>
-            <Card.Text className="mb-0 text-muted">{subtitle}</Card.Text>
-          </div>
-          {time ? <small className="text-muted">{time}</small> : null}
-        </div>
-      </Card.Body>
-    </Card>
+    <div className={`d-flex mb-2 ${isUser ? 'justify-content-end' : 'justify-content-start'}`}>
+      <Card className={isUser ? 'w-75 bg-primary text-white' : 'w-75 bg-light'}>
+        <Card.Body>
+          <Card.Text className="mb-1">{message}</Card.Text>
+        </Card.Body>
+      </Card>
+    </div>
   )
 }
 

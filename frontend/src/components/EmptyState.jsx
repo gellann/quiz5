@@ -3,7 +3,7 @@ import { Card } from 'react-bootstrap'
 
 function EmptyState({
   title = 'Recipe Ingredient Swapper',
-  message = 'Welcome! Start by searching ingredients or creating your first recipe swap.',
+  message = 'Ask for food ingredient substitutions only. I can suggest swaps for missing cooking or baking ingredients.',
 }) {
   return (
     <Card>
